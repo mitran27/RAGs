@@ -16,7 +16,7 @@ import uuid
 import time
 
 COLLECTION_NAME = "rag"
-DB_PATH = "./chromaDB"
+DB_PATH = "./FAISS"
 EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"  # You can choose any supported model
 def load_docs(urls:list):
     from langchain_community.document_loaders import WebBaseLoader
@@ -39,7 +39,6 @@ def process_docs(docs):
         #"metadatas" : [doc.metadata for doc in docs],
         "ids":[str(uuid.uuid4()) for _ in docs]
         }
-assert len(os.getenv("OPENAI_API_KEY")) > 0
 
 split_docs = load_docs([
     "https://jalammar.github.io/illustrated-transformer/",
